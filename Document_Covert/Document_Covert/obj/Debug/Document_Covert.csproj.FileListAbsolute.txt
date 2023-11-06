@@ -20,3 +20,13 @@ C:\Users\Luan Silva\Projetos Git\Document-Convert\Document_Covert\Document_Cover
 C:\Users\Luan Silva\Projetos Git\Document-Convert\Document_Covert\Document_Covert\obj\Debug\Document_Covert.csproj.CoreCompileInputs.cache
 C:\Users\Luan Silva\Projetos Git\Document-Convert\Document_Covert\Document_Covert\obj\Debug\Document_Covert.exe
 C:\Users\Luan Silva\Projetos Git\Document-Convert\Document_Covert\Document_Covert\obj\Debug\Document_Covert.pdb
+C:\Temp\Document_Covert\Document_Covert\bin\Debug\Document_Covert.exe.config
+C:\Temp\Document_Covert\Document_Covert\bin\Debug\Document_Covert.exe
+C:\Temp\Document_Covert\Document_Covert\bin\Debug\Document_Covert.pdb
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.csproj.AssemblyReference.cache
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.Frm_DocumentConvert.resources
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.Properties.Resources.resources
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.csproj.GenerateResource.cache
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.csproj.CoreCompileInputs.cache
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.exe
+C:\Temp\Document_Covert\Document_Covert\obj\Debug\Document_Covert.pdb

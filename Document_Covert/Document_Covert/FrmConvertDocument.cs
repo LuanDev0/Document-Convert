@@ -18,53 +18,122 @@ namespace Document_Covert
             InitializeComponent();
         }
 
+        Boolean Valid = false;
+        String Path = "";
+
         private void Bt_Convert_Click(object sender, EventArgs e)
         {
-            String Path = "";
 
             Path = Tb_FilePath.Text;
+            
+            Lv_Modificated.Items.Clear();
 
-            //Code of validation from Tb_FilePath
+            ValidData(Path, Valid);
+            if (Valid == false) return;
 
+            if(Directory.Exists(Path))
+            {
+                Encrypth(Path);
 
-            string[] arquivos = Directory.GetFiles(Path);
-
-            //Code from Foreach
-
-
-
-            ListViewItem item = new ListViewItem(Tb_FilePath.Text);
-            listView1.Items.Add(item);
-
+            }
+            else
+            {
+                Ep_Path.SetError(Tb_FilePath, "Invalidated file path. Select a validated file path");
+                return;
+            }
+            Valid = false;
         }
 
-        private void ValidatEncrypt(String path, String arquivos)
+        private void Encrypth(string Directorys)
         {
-            String TypeFrom, TypeTo;
+            String[] File = Directory.GetFiles(Directorys);
 
-            if(Cb_From.Text == "ANSI")
+            foreach (string FilePath in File)
             {
-                TypeFrom = File.ReadAllText(Cb_From.Text, Encoding.Default);
+                string Content = "";
+
+                ReadTypeEncrypt(FilePath, Content);
+
+                WriteTypeEncrypt(FilePath, Content);
+
+                ListViewItem item = new ListViewItem(Content);
+                Lv_Modificated.Items.Add(item);
+                Content = "";
+                //Preciso mudar o Content para Global dentro desse FORM
             }
-            if(Cb_From.Text == "UTF-16 LE")
-            {
-                TypeFrom = File.ReadAllText(Cb_From.Text, Encoding.Unicode);
+        }
+
+        private void ReadTypeEncrypt(string filePath, string content)
+        {
+            if (Cb_To.Text == "ANSI")
+            { 
+                //Code of Read "ANSI" Encrypt
+                using (StreamReader stream = new StreamReader(filePath, Encoding.Default))
+                {
+                    content = stream.ReadToEnd();
+                }
+               
             }
-            if (Cb_From.Text == "UTF-8 with BOM")
+            if (Cb_To.Text == "UTF-8")
             {
-                TypeFrom = File.ReadAllText(arquivos, new UTF8Encoding(true));
+                //Code of Read "UTF-8" Encrypt
+                using (StreamReader stream = new StreamReader(filePath, Encoding.UTF8))
+                {
+                    content = stream.ReadToEnd();
+                }
+            }
+        }
+
+        //Method for identify type of Encrypth
+        private void WriteTypeEncrypt(string filePath, string content)
+        {
+            if (Cb_From.Text == "ANSI")
+            {
+                //Code of Write "ANSI" Encrypt
+                using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.Default))
+                {
+                    writer.Write(content);
+                }
+
             }
             if (Cb_From.Text == "UTF-8")
             {
-                TypeFrom = File.ReadAllText(Cb_From.Text, Encoding.UTF8);
+                //Code of Write "UTF-8" Encrypt
+                using (StreamWriter writer = new StreamWriter(filePath,false, Encoding.UTF8))
+                {
+                    writer.Write(content);
+                }
             }
-
         }
 
-            
 
+        private void ValidData(String path, Boolean valid)
+        {
+        
+            if(Cb_From.Text == "")
+            {
+                Ep_From.SetError(Cb_From, "Select Encrypth");
+            }
+            if(Cb_To.Text == "")
+            {
+                Ep_To.SetError(Cb_To, "Select Encrypth");
+            }
+            else if(Tb_FilePath.Text == "")
+            {
+                FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
 
-
-
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                {
+                    Path = folderBrowser.SelectedPath;
+                    Tb_FilePath.Text = Path;
+                    Valid = true;
+                    return;
+                }
+                Valid = false;
+                return;
+            }
+            Valid = true;
+            return;
+        }
     }
 }
